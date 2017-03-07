@@ -1,0 +1,24 @@
+{
+  "name": "LaGouApp",
+  "homepage": "https://github.com/BetaSu/LaGouApp",
+  "authors": [
+    "suChang"
+  ],
+  "description": "仿制的拉勾webApp",
+  "main": "",
+  "keywords": [
+    "angularjs"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.6.2"
+  }
+}

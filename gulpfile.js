@@ -8,8 +8,7 @@ var app={
     prdPath:'dist/'
 }
 
-gulp.task('build',['image','js','less','lib','html','json']);
-
+gulp.task('build',['clean','image','js','less','lib','html','json']);
 
 //拷贝文件
 gulp.task('lib',function () {
@@ -21,7 +20,7 @@ gulp.task('lib',function () {
 
 //拷贝html
 gulp.task('html',function () {
-    gulp.src('app.srcPath'+'**/*.html')
+    gulp.src(app.srcPath+'**/*.html')
         .pipe(gulp.dest(app.devPath))
         .pipe(gulp.dest(app.prdPath))
         .pipe($.connect.reload());
@@ -35,11 +34,19 @@ gulp.task('json',function () {
 })
 
 gulp.task('less',function () {
-    gulp.src(app.srcPath+'sytle/index.less')
+    gulp.src(app.srcPath+'style/**/*.less')
         .pipe($.less())
         .pipe(gulp.dest(app.devPath+'css'))
         .pipe($.cssmin())
         .pipe(gulp.dest(app.prdPath+'css'))
+        .pipe($.connect.reload());
+})
+
+gulp.task('jade',function () {
+    gulp.src(app.srcPath+'**/*.jade')
+        .pipe($.jade())
+        .pipe(gulp.dest(app.devPath))
+        .pipe(gulp.dest(app.prdPath))
         .pipe($.connect.reload());
 })
 
@@ -72,11 +79,12 @@ gulp.task('serve',['build'],function () {
         livereload: true,
         port: 1234
     });
-    open('http://localhost:1234');
+    open('http://localhost:1234/index.html');
 
     gulp.watch(app.srcPath+'script/**/*.js',['js']);
     gulp.watch('bower_components/**/*',['lib']);
     gulp.watch(app.srcPath+'**/*.html',['html']);
+    // gulp.watch(app.srcPath+'**/*.jade',['jade']);
     gulp.watch(app.srcPath+'data/**/*.json',['json']);
     gulp.watch(app.srcPath+'style/**/*.less',['less']);
     gulp.watch(app.srcPath+'image/**/*',['image']);

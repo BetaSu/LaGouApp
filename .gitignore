@@ -3,3 +3,5 @@ bower_components/
 .idea/
 .idea
 .DS_Store
+build/
+dist/

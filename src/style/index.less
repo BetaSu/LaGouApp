@@ -1,0 +1,26 @@
+@import "template/head.less";
+@import "variable.less";
+@import "property.less";
+
+//字体rem适配
+.fs(@px) {
+  font-size: unit(@px / 37.5,rem);
+}
+
+.w(@px) {
+  width: unit(@px / 37.5,rem);
+}
+
+.h(@px) {
+  height: unit(@px / 37.5,rem);
+}
+
+
+html,body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  .fs(16);
+}

@@ -8,7 +8,9 @@ var app={
     prdPath:'dist/'
 }
 
-gulp.task('build',['clean','image','js','less','lib','html','json']);
+gulp.task('build',['clean'],function () {
+    return gulp.start('lib','html','less','js','json','image');
+});
 
 //拷贝文件
 gulp.task('lib',function () {
@@ -34,7 +36,7 @@ gulp.task('json',function () {
 })
 
 gulp.task('less',function () {
-    gulp.src(app.srcPath+'style/**/*.less')
+    gulp.src(app.srcPath+'style/index.less')
         .pipe($.less())
         .pipe(gulp.dest(app.devPath+'css'))
         .pipe($.cssmin())
